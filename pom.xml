@@ -8,7 +8,7 @@
     <artifactId>zapsign_sdk</artifactId>
     <version>1.0-2</version>
 
-
+    <name>zapsign_sdk</name>
     <description>
         This project is a Sdk for zapsign api.
     </description>
@@ -90,6 +90,9 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
                         <version>1.6</version>
                         <executions>
                             <execution>
@@ -137,11 +140,11 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>ossrh</id>
+            <id>ossrh-87030</id>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
-            <id>ossrh</id>
+            <id>ossrh-87030</id>
             <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
