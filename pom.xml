@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.zapsign</groupId>
+    <groupId>br.com.zapsign</groupId>
     <artifactId>zapsign_sdk</artifactId>
     <version>1.0-2</version>
 
@@ -58,6 +58,13 @@
         <developer>
             <name>Eduardo Christino</name>
             <email>eduardo@zapsign.com.br</email>
+            <organization>Zapsign</organization>
+            <organizationUrl>https://zapsign.com.br</organizationUrl>
+        </developer>
+             
+        <developer>
+            <name>Andre Chaves</name>
+            <email>andre@zapsign.com.br</email>
             <organization>Zapsign</organization>
             <organizationUrl>https://zapsign.com.br</organizationUrl>
         </developer>
