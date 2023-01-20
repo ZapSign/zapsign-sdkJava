@@ -2,6 +2,7 @@ package body.doc;
 
 import body.CreateBy;
 import body.signer.Signer;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class DocFromPdfBase64 extends Doc {
         this.base64_pdf = base64_pdf;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getBase64_pdf() {
         return base64_pdf;
     }

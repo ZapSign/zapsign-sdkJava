@@ -2,20 +2,23 @@ package body.doc;
 
 import body.CreateBy;
 import body.signer.Signer;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DocFromTemplate extends Doc {
     private String signer_name;
     private String template_id;
     private List<DeParaTemplate> data;
-    private boolean send_automatic_email;
-    private boolean send_automatic_whatsapp;
-    private String custom_message;
-    private boolean signer_has_incomplete_fields;
+    private boolean send_automatic_email = false;
+    private boolean send_automatic_whatsapp = false;
+    private String custom_message = "";
+    private boolean signer_has_incomplete_fields = false;
 
     @Builder(builderMethodName = "docFromTemplateBuilder")
     public DocFromTemplate(
@@ -45,7 +48,9 @@ public class DocFromTemplate extends Doc {
         super(sandbox, name, lang, disable_signer_emails, signed_file_only_finished, brand_logo, brand_primary_color, brand_name, external_id, folder_path, date_limit_to_sign, signature_order_active, observers, reminder_every_n_days, created_by);
         this.signer_name = signer_name;
         this.template_id = template_id;
-        this.data = data;
+        if (data != null) {
+            this.data = data;
+        }
         this.send_automatic_email = send_automatic_email;
         this.send_automatic_whatsapp = send_automatic_whatsapp;
         this.custom_message = custom_message;
@@ -53,6 +58,7 @@ public class DocFromTemplate extends Doc {
     }
 
     @Override
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public List<Signer> getSigners() {
         return null;
     }
@@ -62,6 +68,7 @@ public class DocFromTemplate extends Doc {
         throw new Exception("you can not set signers in DocFromTemplate, try setSigner_name");
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getSigner_name() {
         return signer_name;
     }
@@ -70,6 +77,7 @@ public class DocFromTemplate extends Doc {
         this.signer_name = signer_name;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getTemplate_id() {
         return template_id;
     }
@@ -77,6 +85,7 @@ public class DocFromTemplate extends Doc {
         this.template_id = template_id;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public List<DeParaTemplate> getData() {
         return data;
     }
@@ -101,6 +110,7 @@ public class DocFromTemplate extends Doc {
         this.send_automatic_whatsapp = send_automatic_whatsapp;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getCustom_message() {
         return custom_message;
     }

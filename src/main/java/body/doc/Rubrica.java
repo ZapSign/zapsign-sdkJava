@@ -1,5 +1,6 @@
 package body.doc;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 
 public class Rubrica {
@@ -62,6 +63,7 @@ public class Rubrica {
         this.relative_size_y = relative_size_y;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getType() {
         return type;
     }
@@ -70,6 +72,7 @@ public class Rubrica {
         this.type = type;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getSigner_token() {
         return signer_token;
     }

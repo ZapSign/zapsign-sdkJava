@@ -1,12 +1,16 @@
 package body.doc;
 import body.CreateBy;
 import body.signer.Signer;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Doc {
     private boolean sandbox;
     private String name;
@@ -155,6 +159,7 @@ public class Doc {
         this.signed_file_only_finished = signed_file_only_finished;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getBrand_logo() {
         return brand_logo;
     }
@@ -163,6 +168,7 @@ public class Doc {
         this.brand_logo = brand_logo;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getBrand_primary_color() {
         return brand_primary_color;
     }
@@ -171,6 +177,7 @@ public class Doc {
         this.brand_primary_color = brand_primary_color;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getBrand_name() {
         return brand_name;
     }
@@ -179,6 +186,7 @@ public class Doc {
         this.brand_name = brand_name;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getExternal_id() {
         return external_id;
     }
@@ -187,6 +195,7 @@ public class Doc {
         this.external_id = external_id;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getFolder_path() {
         return folder_path;
     }
@@ -195,6 +204,7 @@ public class Doc {
         this.folder_path = folder_path;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public Date getDate_limit_to_sign() {
         return date_limit_to_sign;
     }
@@ -211,6 +221,7 @@ public class Doc {
         this.signature_order_active = signature_order_active;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public ArrayList<String> getObservers() {
         return observers;
     }
@@ -227,6 +238,7 @@ public class Doc {
         this.reminder_every_n_days = reminder_every_n_days;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public List<Signer> getSigners() throws Exception {
         return signers;
     }
@@ -235,11 +247,12 @@ public class Doc {
         this.signers = signers;
     }
 
-    public CreateBy getCreate_by() {
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public CreateBy getCreated_by() {
         return created_by;
     }
 
-    public void setCreate_by(CreateBy created_by) {
+    public void setCreated_by(CreateBy created_by) {
         this.created_by = created_by;
     }
 }
