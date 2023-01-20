@@ -3,6 +3,7 @@ body\doc\DocFromDocx.class
 body\doc\RubricaList$RubricaListBuilder.class
 body\doc\Doc$DocBuilder.class
 body\signer\SignBatch.class
+body\doc\DocFromPdfBase64$DocFromPdfBase64Builder.class
 body\doc\ExtraDoc$ExtraDocBuilder.class
 body\Answers.class
 response\DocResponse.class
@@ -14,6 +15,7 @@ body\signer\Signer$SignerBuilder.class
 body\doc\Rubrica$RubricaBuilder.class
 services\HttpRequestFactory.class
 body\doc\ExtraDoc.class
+body\doc\DocFromPdfBase64.class
 body\doc\DocFromTemplate$DocFromTemplateBuilder.class
 response\DocAsyncResponse.class
 body\doc\Doc.class

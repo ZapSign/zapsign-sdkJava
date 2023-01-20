@@ -1,5 +1,6 @@
 package body.doc;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 
 public class ExtraDoc {
@@ -12,6 +13,7 @@ public class ExtraDoc {
         this.url_pdf = url_pdf;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getName() {
         return name;
     }
@@ -20,6 +22,7 @@ public class ExtraDoc {
         this.name = name;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getUrl_pdf() {
         return url_pdf;
     }

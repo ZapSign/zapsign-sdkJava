@@ -1,6 +1,8 @@
 package body.doc;
 
+import body.CreateBy;
 import body.signer.Signer;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 
 import java.util.ArrayList;
@@ -27,12 +29,14 @@ public class DocFromDocx extends Doc {
             ArrayList<String> observers,
             int reminder_every_n_days,
             List<Signer> signers,
-            String url_docx
+            String url_docx,
+            CreateBy created_by
     ) {
-        super(sandbox, name, lang, disable_signer_emails, signed_file_only_finished, brand_logo, brand_primary_color, brand_name, external_id, folder_path, date_limit_to_sign, signature_order_active, observers, reminder_every_n_days, signers);
+        super(sandbox, name, lang, disable_signer_emails, signed_file_only_finished, brand_logo, brand_primary_color, brand_name, external_id, folder_path, date_limit_to_sign, signature_order_active, observers, reminder_every_n_days, signers, created_by);
         this.url_docx = url_docx;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getUrl_docx() {
         return url_docx;
     }

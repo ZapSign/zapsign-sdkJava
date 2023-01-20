@@ -1,5 +1,6 @@
 package body.doc;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 
 public class DeParaTemplate {
@@ -13,6 +14,7 @@ public class DeParaTemplate {
         this.para = para;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getDe() {
         return de;
     }
@@ -21,6 +23,7 @@ public class DeParaTemplate {
         this.de = de;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getPara() {
         return para;
     }
