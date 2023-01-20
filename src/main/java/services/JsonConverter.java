@@ -41,6 +41,10 @@ public class JsonConverter {
         return objecWriter.writeValueAsString(docFromDocx);
     }
 
+    public String docFromPdfBase64ToJson(DocFromPdfBase64 docFromPdfBase64) throws JsonProcessingException {
+        return objecWriter.writeValueAsString(docFromPdfBase64);
+    }
+
     public String docFromTemplateToJson(DocFromTemplate docFromTemplate) throws JsonProcessingException {
         return objecWriter.writeValueAsString(docFromTemplate);
     }

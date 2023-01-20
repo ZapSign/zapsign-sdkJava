@@ -61,7 +61,7 @@
             <organization>Zapsign</organization>
             <organizationUrl>https://zapsign.com.br</organizationUrl>
         </developer>
-             
+
         <developer>
             <name>Andre Chaves</name>
             <email>andre@zapsign.com.br</email>
@@ -170,7 +170,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.0</version>
+                    <version>3.8.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>

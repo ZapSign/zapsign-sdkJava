@@ -1,5 +1,6 @@
 package body.doc;
 
+import body.CreateBy;
 import body.signer.Signer;
 import lombok.Builder;
 
@@ -27,9 +28,10 @@ public class DocFromPdf extends Doc {
             ArrayList<String> observers,
             int reminder_every_n_days,
             List<Signer> signers,
-            String url_pdf
+            String url_pdf,
+            CreateBy createBy
     ) {
-        super(sandbox, name, lang, disable_signer_emails, signed_file_only_finished, brand_logo, brand_primary_color, brand_name, external_id, folder_path, date_limit_to_sign, signature_order_active, observers, reminder_every_n_days, signers);
+        super(sandbox, name, lang, disable_signer_emails, signed_file_only_finished, brand_logo, brand_primary_color, brand_name, external_id, folder_path, date_limit_to_sign, signature_order_active, observers, reminder_every_n_days, signers, createBy);
         this.url_pdf = url_pdf;
     }
 

@@ -1,4 +1,5 @@
 package body.doc;
+import body.CreateBy;
 import body.signer.Signer;
 import lombok.Builder;
 
@@ -22,6 +23,7 @@ public class Doc {
     private ArrayList<String> observers;
     private List<Signer> signers;
     private int reminder_every_n_days;
+    private CreateBy created_by;
 
     public Doc() {
         this.sandbox = false;
@@ -55,7 +57,8 @@ public class Doc {
             Date date_limit_to_sign,
             boolean signature_order_active,
             ArrayList<String> observers,
-            int reminder_every_n_days
+            int reminder_every_n_days,
+            CreateBy created_by
     ) {
         this.sandbox = sandbox;
         this.name = name;
@@ -71,6 +74,7 @@ public class Doc {
         this.signature_order_active = signature_order_active;
         this.observers = observers;
         this.reminder_every_n_days = reminder_every_n_days;
+        this.created_by = created_by;
     }
 
     @Builder(builderMethodName = "docWithSignerBuilder")
@@ -89,7 +93,9 @@ public class Doc {
             boolean signature_order_active,
             ArrayList<String> observers,
             int reminder_every_n_days,
-            List<Signer> signers
+            List<Signer> signers,
+            CreateBy created_by
+
     ) {
         this.sandbox = sandbox;
         this.name = name;
@@ -106,6 +112,7 @@ public class Doc {
         this.observers = observers;
         this.reminder_every_n_days = reminder_every_n_days;
         this.signers = signers;
+        this.created_by = created_by;
     }
 
     public boolean isSandbox() {
@@ -226,5 +233,13 @@ public class Doc {
 
     public void setSigners(List<Signer> signers) throws Exception {
         this.signers = signers;
+    }
+
+    public CreateBy getCreate_by() {
+        return created_by;
+    }
+
+    public void setCreate_by(CreateBy created_by) {
+        this.created_by = created_by;
     }
 }

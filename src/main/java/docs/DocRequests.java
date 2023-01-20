@@ -57,6 +57,26 @@ public class DocRequests {
         return this.jsonConverter.jsonToDocAsyncResponse(response.body());
     }
 
+    public DocResponse createDocFromPdfBase64(DocFromPdfBase64 doc) throws Exception {
+        String jsonDoc = this.jsonConverter.docFromPdfBase64ToJson(doc);
+
+        String uri = this.apiRoute+"docs/?api_token="+this.apiToken;
+
+        HttpResponse<String> response = new HttpRequestFactory().postRequest(uri, jsonDoc);
+
+        return this.jsonConverter.jsonToDocResponse(response.body());
+    }
+
+    public DocAsyncResponse createDocFromPdfBase64Async(DocFromPdfBase64 doc) throws Exception {
+        String jsonDoc = new JsonConverter().docFromPdfBase64ToJson(doc);
+
+        String uri = this.apiRoute+"docs/async/?api_token="+this.apiToken;
+
+        HttpResponse<String> response = new HttpRequestFactory().postRequest(uri, jsonDoc);
+
+        return this.jsonConverter.jsonToDocAsyncResponse(response.body());
+    }
+
     public DocResponse createDocFromTemplate(DocFromTemplate doc) throws Exception {
         String jsonDoc = new JsonConverter().docFromTemplateToJson(doc);
 

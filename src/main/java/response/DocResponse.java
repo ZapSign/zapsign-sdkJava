@@ -19,7 +19,6 @@ public class DocResponse extends Doc {
     private String deleted_at;
     private String created_at;
     private String last_update_at;
-    private CreateBy created_by;
     private Template template;
     private ArrayList<Answers> answers;
     private int auto_reminder;
@@ -114,14 +113,6 @@ public class DocResponse extends Doc {
 
     public void setLast_update_at(String last_update_at) {
         this.last_update_at = last_update_at;
-    }
-
-    public CreateBy getCreated_by() {
-        return created_by;
-    }
-
-    public void setCreated_by(CreateBy created_by) {
-        this.created_by = created_by;
     }
 
     public Template getTemplate() {

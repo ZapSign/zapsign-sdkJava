@@ -19,7 +19,10 @@ public class Signer {
     private boolean blank_phone = false;
     private boolean hide_phone = false;
     private boolean lock_name = false;
+    private boolean require_cpf = false;
+    private String cpf = null;
     private boolean require_selfie_photo = false;
+    private boolean require_document_photo = false;
     private String selfie_validation_type = "none";
     private String qualification = "";
     private String external_id = "";
@@ -39,7 +42,6 @@ public class Signer {
     private String  selfie_photo_url;
     private String  selfie_photo_url2;
     private String  send_via;
-    private String  require_document_photo;
 
     public Signer() {
     }
@@ -62,7 +64,10 @@ public class Signer {
         boolean blank_phone,
         boolean hide_phone,
         boolean lock_name,
+        boolean require_cpf,
+        String cpf,
         boolean require_selfie_photo,
+        boolean require_document_photo,
         String selfie_validation_type,
         String qualification,
         String external_id,
@@ -84,7 +89,10 @@ public class Signer {
         this.blank_phone = blank_phone;
         this.hide_phone = hide_phone;
         this.lock_name = lock_name;
+        this.require_cpf = require_cpf;
+        this.cpf = cpf;
         this.require_selfie_photo = require_selfie_photo;
+        this.require_document_photo = require_document_photo;
         this.selfie_validation_type = selfie_validation_type;
         this.qualification = qualification;
         this.external_id = external_id;
@@ -219,12 +227,36 @@ public class Signer {
         this.lock_name = lock_name;
     }
 
+    public boolean isRequire_cpf() {
+        return require_cpf;
+    }
+
+    public void setRequire_cpf(boolean require_cpf) {
+        this.require_cpf = require_cpf;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public boolean isRequire_selfie_photo() {
         return require_selfie_photo;
     }
 
     public void setRequire_selfie_photo(boolean require_selfie_photo) {
         this.require_selfie_photo = require_selfie_photo;
+    }
+
+    public boolean isRequire_document_photo() {
+        return require_document_photo;
+    }
+
+    public void setRequire_document_photo(boolean require_document_photo) {
+        this.require_document_photo = require_document_photo;
     }
 
     public String getSelfie_validation_type() {
@@ -377,13 +409,5 @@ public class Signer {
 
     public void setSend_via(String send_via) {
         this.send_via = send_via;
-    }
-
-    public String getRequire_document_photo() {
-        return require_document_photo;
-    }
-
-    public void setRequire_document_photo(String require_document_photo) {
-        this.require_document_photo = require_document_photo;
     }
 }
