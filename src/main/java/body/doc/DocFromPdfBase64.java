@@ -14,7 +14,6 @@ public class DocFromPdfBase64 extends Doc {
 
     @Builder(builderMethodName = "docFromPdfBase64Builder")
     public DocFromPdfBase64(
-            boolean sandbox,
             String name,
             String lang,
             boolean disable_signer_emails,
@@ -32,7 +31,7 @@ public class DocFromPdfBase64 extends Doc {
             String base64_pdf,
             CreateBy created_by
     ) {
-        super(sandbox, name, lang, disable_signer_emails, signed_file_only_finished, brand_logo, brand_primary_color, brand_name, external_id, folder_path, date_limit_to_sign, signature_order_active, observers, reminder_every_n_days, signers, created_by);
+        super(name, lang, disable_signer_emails, signed_file_only_finished, brand_logo, brand_primary_color, brand_name, external_id, folder_path, date_limit_to_sign, signature_order_active, observers, reminder_every_n_days, signers, created_by);
         this.base64_pdf = base64_pdf;
     }
 

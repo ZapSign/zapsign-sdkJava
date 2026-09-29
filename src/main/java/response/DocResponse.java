@@ -1,7 +1,6 @@
 package response;
 
 import body.Answers;
-import body.CreateBy;
 import body.Template;
 import body.doc.Doc;
 

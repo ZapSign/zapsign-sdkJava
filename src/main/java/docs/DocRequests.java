@@ -1,6 +1,7 @@
 package docs;
 
 import body.doc.*;
+import request.Request;
 import response.DocAsyncResponse;
 import response.DocResponse;
 import response.DocsResponse;
@@ -10,134 +11,68 @@ import services.JsonConverter;
 
 import java.net.http.HttpResponse;
 
-public class DocRequests {
-    private final String apiRoute = "https://api.zapsign.com.br/api/v1/";
-    private final JsonConverter jsonConverter = new JsonConverter();
-    private String apiToken;
+public class DocRequests extends Request {
 
     public DocRequests(String apiToken) {
-        this.apiToken = apiToken;
+        super(apiToken);
     }
 
-    public String getTokenApi() {
-        return apiToken;
-    }
-
-    public void setTokenApi(String apiToken) {
-        this.apiToken = apiToken;
+    public DocRequests(String apiToken, boolean isSandbox) {
+        super(apiToken, isSandbox);
     }
 
     public DocResponse createDocFromUploadPdf(DocFromPdf doc) throws Exception {
-        String jsonDoc = this.jsonConverter.docFromPdfToJson(doc);
-
-        String uri = this.apiRoute+"docs/?api_token="+this.apiToken;
-
-        HttpResponse<String> response = new HttpRequestFactory().postRequest(uri, jsonDoc);
-
-        return this.jsonConverter.jsonToDocResponse(response.body());
+        return postRequest(doc, "docs", DocResponse.class);
     }
 
     public DocResponse createDocFromUploadDocx(DocFromDocx doc) throws Exception {
-        String jsonDoc = new JsonConverter().docFromDocxToJson(doc);
-
-        String uri = this.apiRoute+"docs/?api_token="+this.apiToken;
-
-        HttpResponse<String> response = new HttpRequestFactory().postRequest(uri, jsonDoc);
-
-        return this.jsonConverter.jsonToDocResponse(response.body());
+        return postRequest(doc, "docs", DocResponse.class);
     }
 
     public DocAsyncResponse createDocFromUploadAsync(DocFromPdf doc) throws Exception {
-        String jsonDoc = new JsonConverter().docFromPdfToJson(doc);
+        return postRequest(doc, "docs/async", DocAsyncResponse.class);
+    }
 
-        String uri = this.apiRoute+"docs/async/?api_token="+this.apiToken;
-
-        HttpResponse<String> response = new HttpRequestFactory().postRequest(uri, jsonDoc);
-
-        return this.jsonConverter.jsonToDocAsyncResponse(response.body());
+    public DocResponse createDocFromDocxBase64(DocFromDocxBase64 doc) throws Exception {
+        return postRequest(doc, "docs", DocResponse.class);
     }
 
     public DocResponse createDocFromPdfBase64(DocFromPdfBase64 doc) throws Exception {
-        String jsonDoc = this.jsonConverter.docFromPdfBase64ToJson(doc);
-
-        String uri = this.apiRoute+"docs/?api_token="+this.apiToken;
-
-        HttpResponse<String> response = new HttpRequestFactory().postRequest(uri, jsonDoc);
-
-        return this.jsonConverter.jsonToDocResponse(response.body());
+        return postRequest(doc, "docs", DocResponse.class);
     }
 
     public DocAsyncResponse createDocFromPdfBase64Async(DocFromPdfBase64 doc) throws Exception {
-        String jsonDoc = new JsonConverter().docFromPdfBase64ToJson(doc);
-
-        String uri = this.apiRoute+"docs/async/?api_token="+this.apiToken;
-
-        HttpResponse<String> response = new HttpRequestFactory().postRequest(uri, jsonDoc);
-
-        return this.jsonConverter.jsonToDocAsyncResponse(response.body());
+        return postRequest(doc, "docs/async", DocAsyncResponse.class);
     }
 
     public DocResponse createDocFromTemplate(DocFromTemplate doc) throws Exception {
-        String jsonDoc = new JsonConverter().docFromTemplateToJson(doc);
-
-        String uri = this.apiRoute+"models/create-doc/?api_token="+this.apiToken;
-
-        HttpResponse<String> response = new HttpRequestFactory().postRequest(uri, jsonDoc);
-
-        return this.jsonConverter.jsonToDocResponse(response.body());
+        return postRequest(doc, "models/create-doc", DocResponse.class);
     }
 
     public DocAsyncResponse createDocFromTemplateAsync(DocFromTemplate doc) throws Exception {
-        String jsonDoc = new JsonConverter().docFromTemplateToJson(doc);
-
-        String uri = this.apiRoute+"models/create-doc/async/?api_token="+this.apiToken;
-
-        HttpResponse<String> response = new HttpRequestFactory().postRequest(uri, jsonDoc);
-
-        return this.jsonConverter.jsonToDocAsyncResponse(response.body());
+        return postRequest(doc, "models/create-doc/async", DocAsyncResponse.class);
     }
 
     public ExtraDocResponse addExtraDoc(String docToken, ExtraDoc extraDoc) throws Exception {
-        String jsonDoc = new JsonConverter().extraDocsToJson(extraDoc);
-
-        String uri = this.apiRoute+"docs/"+docToken+"/upload-extra-doc/?api_token="+this.apiToken;
-
-        HttpResponse<String> response = new HttpRequestFactory().postRequest(uri, jsonDoc);
-
-        return this.jsonConverter.jsonToExtraDocResponse(response.body());
+        return postRequest(extraDoc, "docs/" + docToken + "/upload-extra-doc", ExtraDocResponse.class);
     }
 
     public DocResponse detailDoc(String docToken) throws Exception {
-        String uri = this.apiRoute+"docs/"+docToken+"/?api_token="+this.apiToken;
-
-        HttpResponse<String> response = new HttpRequestFactory().getRequest(uri);
-
-        return this.jsonConverter.jsonToDocResponse(response.body());
+        return getRequest("docs/" + docToken, DocResponse.class);
     }
 
     public DocsResponse getDocs() throws Exception {
-        String uri = this.apiRoute+"docs/?api_token="+this.apiToken;
-
-        HttpResponse<String> response = new HttpRequestFactory().getRequest(uri);
-
-        return this.jsonConverter.jsonToDocsResponse(response.body());
+        return getRequest("docs", DocsResponse.class);
     }
 
     public DocResponse deleteDoc(String docToken) throws Exception {
-        String uri = this.apiRoute+"docs/"+docToken+"/?api_token="+this.apiToken;
-
-        HttpResponse<String> response = new HttpRequestFactory().deleteRequest(uri);
-
-        return this.jsonConverter.jsonToDocResponse(response.body());
+        return deleteRequest("docs/" + docToken, DocResponse.class);
     }
 
     public int placeSignatures(String docToken, RubricaList rubricaList) throws Exception {
-        String jsonDoc = new JsonConverter().rubricaListToJson(rubricaList);
-
-        String uri = this.apiRoute+"docs/"+docToken+"/place-signatures/?api_token="+this.apiToken;
-
+        String jsonDoc = new JsonConverter().convertToJson(rubricaList);
+        String uri = isSandbox ? apiRouteSandbox : apiRoute + "docs/" + docToken + "/place-signatures/?api_token=" + apiToken;
         HttpResponse<String> response = new HttpRequestFactory().postRequest(uri, jsonDoc);
-
         return response.statusCode();
     }
 }

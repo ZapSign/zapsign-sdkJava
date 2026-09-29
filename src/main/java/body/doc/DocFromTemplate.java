@@ -22,7 +22,6 @@ public class DocFromTemplate extends Doc {
 
     @Builder(builderMethodName = "docFromTemplateBuilder")
     public DocFromTemplate(
-            boolean sandbox,
             String name,
             String lang,
             boolean disable_signer_emails,
@@ -45,7 +44,7 @@ public class DocFromTemplate extends Doc {
             boolean signer_has_incomplete_fields,
             CreateBy created_by
     ) {
-        super(sandbox, name, lang, disable_signer_emails, signed_file_only_finished, brand_logo, brand_primary_color, brand_name, external_id, folder_path, date_limit_to_sign, signature_order_active, observers, reminder_every_n_days, created_by);
+        super(name, lang, disable_signer_emails, signed_file_only_finished, brand_logo, brand_primary_color, brand_name, external_id, folder_path, date_limit_to_sign, signature_order_active, observers, reminder_every_n_days, created_by);
         this.signer_name = signer_name;
         this.template_id = template_id;
         if (data != null) {

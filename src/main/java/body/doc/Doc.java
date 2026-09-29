@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Doc {
-    private boolean sandbox;
     private String name;
     private String lang;
     private boolean disable_signer_emails;
@@ -30,7 +29,6 @@ public class Doc {
     private CreateBy created_by;
 
     public Doc() {
-        this.sandbox = false;
         this.name = "";
         this.lang = "pt-br";
         this.disable_signer_emails = false;
@@ -48,7 +46,6 @@ public class Doc {
 
     @Builder(builderMethodName = "docBuilder")
     public Doc(
-            boolean sandbox,
             String name,
             String lang,
             boolean disable_signer_emails,
@@ -64,7 +61,6 @@ public class Doc {
             int reminder_every_n_days,
             CreateBy created_by
     ) {
-        this.sandbox = sandbox;
         this.name = name;
         this.lang = lang;
         this.disable_signer_emails = disable_signer_emails;
@@ -83,7 +79,6 @@ public class Doc {
 
     @Builder(builderMethodName = "docWithSignerBuilder")
     public Doc(
-            boolean sandbox,
             String name,
             String lang,
             boolean disable_signer_emails,
@@ -101,7 +96,6 @@ public class Doc {
             CreateBy created_by
 
     ) {
-        this.sandbox = sandbox;
         this.name = name;
         this.lang = lang;
         this.disable_signer_emails = disable_signer_emails;
@@ -117,14 +111,6 @@ public class Doc {
         this.reminder_every_n_days = reminder_every_n_days;
         this.signers = signers;
         this.created_by = created_by;
-    }
-
-    public boolean isSandbox() {
-        return sandbox;
-    }
-
-    public void setSandbox(boolean sandbox) {
-        this.sandbox = sandbox;
     }
 
     public String getName() {
